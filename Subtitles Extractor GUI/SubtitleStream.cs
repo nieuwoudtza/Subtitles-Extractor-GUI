@@ -17,6 +17,16 @@ namespace Subtitles_Extractor_GUI
 
         public void Extract()
         {
+            string subtitleFilePath = Path.ChangeExtension(Input, ".srt");
+            if (File.Exists(subtitleFilePath))
+            {
+                try
+                {
+                    File.Delete(subtitleFilePath);
+                }
+                catch { }
+            }
+
             switch (SubtitleStreamType)
             {
                 case SubtitleStreamType.subrip_mov_text:

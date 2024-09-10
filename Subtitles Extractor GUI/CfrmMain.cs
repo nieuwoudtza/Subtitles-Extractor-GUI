@@ -119,11 +119,13 @@ namespace Subtitles_Extractor_GUI
             {
                 dgvMediaFiles[2, i].Value = "Ready";
             }
+
+            lblStatus.Text = dgvMediaFiles.RowCount + " File(s)";
         }
 
         async void Extract()
         {
-            lblStatus.Text = "Extracted 0/" + _mediaFiles.Count + " Subtitle Files (0.00%)";
+            lblStatus.Text = "Extracted 0/" + _mediaFiles.Count + " (0.00%)";
 
             double extractedCount = 0;
 
@@ -172,13 +174,6 @@ namespace Subtitles_Extractor_GUI
                             stream.PerformOCR();
                         }
 
-                        extractedCount++;
-
-                        Invoke((Action)delegate
-                        {
-                            lblStatus.Text = "Extracted " + extractedCount + "/" + _mediaFiles.Count + " Subtitle Files (" + (extractedCount / _mediaFiles.Count * 100).ToString("F2") + "%)";
-                        });
-
                         textBoxCell.Value = "Success";
                     }
                     catch (Exception ex)
@@ -187,7 +182,17 @@ namespace Subtitles_Extractor_GUI
                     }
                     finally
                     {
-                        semaphore.Release(); // Release semaphore
+                        extractedCount++;
+
+                        Invoke((Action)delegate
+                        {
+                            lblStatus.Text = "Extracted " + extractedCount + "/" + _mediaFiles.Count + " (" + (extractedCount / _mediaFiles.Count * 100).ToString("F2") + "%)";
+                        });
+
+                        if (stream.SubtitleStreamType != SubtitleStreamType.hdmv_pgs_subtitle)
+                        {
+                            semaphore.Release(); // Release semaphore when OCR was not performed
+                        }
                     }
                 });
 
@@ -211,6 +216,9 @@ namespace Subtitles_Extractor_GUI
             btnExtract.Enabled = true;
 
             SoftToggleDGV(true);
+            fileToolStripMenuItem.Enabled = true;
+
+            MessageBox.Show(this, "Operation Completed", "Subtitles Extractor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         void Stop(bool force = false)
@@ -329,6 +337,7 @@ namespace Subtitles_Extractor_GUI
             if (!_running)
             {
                 _running = true;
+                fileToolStripMenuItem.Enabled = true;
                 SoftToggleDGV(false);
                 btnExtract.Text = "Stop";
                 Extract();
