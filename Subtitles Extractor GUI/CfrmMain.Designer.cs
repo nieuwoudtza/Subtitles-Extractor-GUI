@@ -57,6 +57,7 @@
             // 
             this.dgvMediaFiles.AllowUserToAddRows = false;
             this.dgvMediaFiles.AllowUserToDeleteRows = false;
+            this.dgvMediaFiles.AllowUserToResizeColumns = false;
             this.dgvMediaFiles.AllowUserToResizeRows = false;
             this.dgvMediaFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -221,13 +222,13 @@
             this.sendToContextToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createRemoveToolStripMenuItem});
             this.sendToContextToolStripMenuItem.Name = "sendToContextToolStripMenuItem";
-            this.sendToContextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendToContextToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.sendToContextToolStripMenuItem.Text = "Send To (Context)";
             // 
             // createRemoveToolStripMenuItem
             // 
             this.createRemoveToolStripMenuItem.Name = "createRemoveToolStripMenuItem";
-            this.createRemoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createRemoveToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.createRemoveToolStripMenuItem.Text = "Create";
             this.createRemoveToolStripMenuItem.Click += new System.EventHandler(this.CreateRemoveToolStripMenuItem_Click);
             // 

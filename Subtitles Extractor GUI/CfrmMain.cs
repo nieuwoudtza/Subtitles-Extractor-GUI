@@ -378,7 +378,7 @@ namespace Subtitles_Extractor_GUI
 
         private void DgvMediaFiles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0 && e.RowIndex > -1)
             {
                 Process.Start(_mediaFiles[e.RowIndex].Path);
             }
@@ -415,6 +415,8 @@ namespace Subtitles_Extractor_GUI
                     _mediaFiles.RemoveAt(i--);
                 }
             }
+
+            lblStatus.Text = dgvMediaFiles.RowCount + " File(s)";
         }
 
         private void MediaWithExistingSubtitles10kbToolStripMenuItem_Click(object sender, EventArgs e)
@@ -428,6 +430,8 @@ namespace Subtitles_Extractor_GUI
                     _mediaFiles.RemoveAt(i--);
                 }
             }
+
+            lblStatus.Text = dgvMediaFiles.RowCount + " File(s)";
         }
 
         private void Subtitles10kbToolStripMenuItem_Click(object sender, EventArgs e)
