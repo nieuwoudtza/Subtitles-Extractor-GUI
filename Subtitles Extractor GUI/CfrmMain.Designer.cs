@@ -234,6 +234,7 @@
             // dlgOpenFile
             // 
             this.dlgOpenFile.Filter = "Media Files (*.avi,*.mkv,*.mov,*.mp4,*.webm)|*.avi;*.mkv;*.mov;*.mp4;*.webm";
+            this.dlgOpenFile.Multiselect = true;
             this.dlgOpenFile.Title = "Select Media File";
             // 
             // CfrmMain

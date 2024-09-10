@@ -388,10 +388,20 @@ namespace Subtitles_Extractor_GUI
         {
             if (dlgOpenFile.ShowDialog() == DialogResult.OK)
             {
-                AddFile(dlgOpenFile.FileName);
-            }
+                Task.Factory.StartNew(() =>
+                {
+                    for (int i = 0; i < dlgOpenFile.FileNames.Length; i++)
+                    {
+                        AddFile(dlgOpenFile.FileNames[i]);
+                    }
 
-            dlgOpenFile.FileName = string.Empty;
+                    dlgOpenFile.FileName = string.Empty;
+                }, TaskCreationOptions.LongRunning);
+            }
+            else
+            {
+                dlgOpenFile.FileName = string.Empty;
+            }
         }
 
         private void MediaWithExistingSubtitlesToolStripMenuItem_Click(object sender, EventArgs e)
