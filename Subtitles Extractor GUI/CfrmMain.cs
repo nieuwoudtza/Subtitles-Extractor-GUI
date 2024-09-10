@@ -337,7 +337,7 @@ namespace Subtitles_Extractor_GUI
             if (!_running)
             {
                 _running = true;
-                fileToolStripMenuItem.Enabled = true;
+                fileToolStripMenuItem.Enabled = false;
                 SoftToggleDGV(false);
                 btnExtract.Text = "Stop";
                 Extract();
