@@ -113,7 +113,8 @@ namespace Subtitles_Extractor_GUI
         {
             string supFile = Path.ChangeExtension(Input, ".sup");
 
-            string SubEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE361", "SubtitleEdit.exe");
+            //string SubEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE361", "SubtitleEdit.exe");
+            string SubEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE", "SubtitleEdit.exe");
             //File.WriteAllText(TempFile, "\"" + SubEditPath + "\" /convert \"" + supFile + "\"" + " SubRip /fps:25");
 
             ProcessStartInfo psi = new ProcessStartInfo(SubEditPath)
