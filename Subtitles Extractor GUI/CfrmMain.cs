@@ -140,6 +140,8 @@ namespace Subtitles_Extractor_GUI
 
                 bool taskStarted = false;
 
+                int id = i;
+
                 Task extract = Task.Run(async () =>
                 {
                     taskStarted = true;
@@ -148,6 +150,7 @@ namespace Subtitles_Extractor_GUI
 
                     if (!_running)
                     {
+                        semaphore.Release();
                         return;
                     }
 
@@ -158,6 +161,7 @@ namespace Subtitles_Extractor_GUI
 
                         if (!_running)
                         {
+                            semaphore.Release();
                             return;
                         }
 
@@ -189,7 +193,7 @@ namespace Subtitles_Extractor_GUI
 
                 tasks.Add(extract);
 
-                while (!taskStarted)
+                while (_running && !taskStarted)
                 {
                     await Task.Delay(10);
                 }
