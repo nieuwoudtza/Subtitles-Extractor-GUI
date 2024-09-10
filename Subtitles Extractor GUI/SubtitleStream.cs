@@ -12,9 +12,6 @@ namespace Subtitles_Extractor_GUI
         public string Language { get; set; }
         public SubtitleStreamType SubtitleStreamType { get; set; }
 
-        //public bool ExtractSuccess { get; set; }
-        //public string ErrorMessage { get; set; }
-
         public void Extract()
         {
             string subtitleFilePath = Path.ChangeExtension(Input, ".srt");
@@ -112,12 +109,9 @@ namespace Subtitles_Extractor_GUI
         public void PerformOCR()
         {
             string supFile = Path.ChangeExtension(Input, ".sup");
+            string subEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE", "SubtitleEdit.exe");
 
-            //string SubEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE361", "SubtitleEdit.exe");
-            string SubEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE", "SubtitleEdit.exe");
-            //File.WriteAllText(TempFile, "\"" + SubEditPath + "\" /convert \"" + supFile + "\"" + " SubRip /fps:25");
-
-            ProcessStartInfo psi = new ProcessStartInfo(SubEditPath)
+            ProcessStartInfo psi = new ProcessStartInfo(subEditPath)
             {
                 Arguments = "/convert \"" + supFile + "\"" + " SubRip /fps:25",
                 UseShellExecute = false,
