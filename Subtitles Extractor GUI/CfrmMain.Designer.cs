@@ -141,7 +141,7 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(708, 28);
             this.lblStatus.TabIndex = 2;
-            this.lblStatus.Text = "Status: 0 Files";
+            this.lblStatus.Text = "0 Files";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // menuStrip
