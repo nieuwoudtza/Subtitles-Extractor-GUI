@@ -46,7 +46,7 @@
             this.subtitles10kbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendToContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToContextMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpenFile = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMediaFiles)).BeginInit();
@@ -124,6 +124,7 @@
             // btnExtract
             // 
             this.btnExtract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExtract.Enabled = false;
             this.btnExtract.Location = new System.Drawing.Point(714, 442);
             this.btnExtract.Name = "btnExtract";
             this.btnExtract.Size = new System.Drawing.Size(76, 28);
@@ -212,18 +213,18 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sendToContextToolStripMenuItem});
+            this.sendToContextMenuToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
-            // sendToContextToolStripMenuItem
+            // sendToContextMenuToolStripMenuItem
             // 
-            this.sendToContextToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendToContextMenuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createRemoveToolStripMenuItem});
-            this.sendToContextToolStripMenuItem.Name = "sendToContextToolStripMenuItem";
-            this.sendToContextToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.sendToContextToolStripMenuItem.Text = "Send To (Context)";
+            this.sendToContextMenuToolStripMenuItem.Name = "sendToContextMenuToolStripMenuItem";
+            this.sendToContextMenuToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.sendToContextMenuToolStripMenuItem.Text = "Send To (Context Menu)";
             // 
             // createRemoveToolStripMenuItem
             // 
@@ -285,7 +286,7 @@
         private System.Windows.Forms.ToolStripMenuItem subtitles10kbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mediaWithExistingSubtitles10kbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sendToContextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sendToContextMenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createRemoveToolStripMenuItem;
     }
 }

@@ -61,6 +61,16 @@ namespace Subtitles_Extractor_GUI
                     }
                 }
             });
+
+            UpdateExtractButton();
+        }
+
+        void UpdateExtractButton()
+        {
+            Invoke((Action)delegate
+            {
+                btnExtract.Enabled = _mediaFiles.Count != 0;
+            });
         }
 
         void SoftToggleDGV(bool value)
@@ -365,6 +375,7 @@ namespace Subtitles_Extractor_GUI
                 }
             }
 
+            UpdateExtractButton();
             lblStatus.Text = dgvMediaFiles.RowCount + " File(s)";
         }
 
@@ -425,6 +436,7 @@ namespace Subtitles_Extractor_GUI
                 }
             }
 
+            UpdateExtractButton();
             lblStatus.Text = dgvMediaFiles.RowCount + " File(s)";
         }
 
@@ -440,6 +452,7 @@ namespace Subtitles_Extractor_GUI
                 }
             }
 
+            UpdateExtractButton();
             lblStatus.Text = dgvMediaFiles.RowCount + " File(s)";
         }
 
