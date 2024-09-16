@@ -17,7 +17,6 @@ namespace Subtitles_Extractor_GUI
 
         List<Process> _processes = new List<Process>();
         List<MediaFile> _mediaFiles = new List<MediaFile>();
-
         bool _running = false;
 
         public CfrmMain(string[] args)
