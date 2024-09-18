@@ -401,7 +401,10 @@ namespace Subtitles_Extractor_GUI
         {
             if (e.ColumnIndex == 0 && e.RowIndex > -1)
             {
-                Process.Start(_mediaFiles[e.RowIndex].Path);
+                Task.Factory.StartNew(() =>
+                {
+                    Process.Start(_mediaFiles[e.RowIndex].Path);
+                });
             }
         }
 
