@@ -26,16 +26,18 @@ namespace Subtitles_Extractor_GUI
 
             switch (SubtitleStreamType)
             {
-                case SubtitleStreamType.subrip_mov_text:
-                    ExtractSubripMovText();
+                case SubtitleStreamType.SubRip:
+                case SubtitleStreamType.MOV_TEXT:
+                case SubtitleStreamType.ASS:
+                    ExtractTextBased();
                     break;
-                case SubtitleStreamType.hdmv_pgs_subtitle:
-                    ExtractHdmvPgs();
+                case SubtitleStreamType.HDMV_PGS_SUBTITLE:
+                    ExtractImageBased();
                     break;
             }
         }
 
-        void ExtractSubripMovText()
+        void ExtractTextBased()
         {
             ProcessStartInfo psi = new ProcessStartInfo("ffmpeg.exe", "-i \"" + Input + "\"" + " -map " + Stream + " \"" + Path.ChangeExtension(Input, ".srt") + "\" -y")
             {
@@ -69,7 +71,7 @@ namespace Subtitles_Extractor_GUI
             }
         }
 
-        void ExtractHdmvPgs()
+        void ExtractImageBased()
         {
             string supFile = Path.ChangeExtension(Input, ".sup");
 
@@ -110,14 +112,17 @@ namespace Subtitles_Extractor_GUI
         {
             string supFile = Path.ChangeExtension(Input, ".sup");
             string subEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE", "SubtitleEdit.exe");
+            string tesseractPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE", "Tesseract533", "tesseract.exe");
 
             ProcessStartInfo psi = new ProcessStartInfo(subEditPath)
             {
-                Arguments = "/convert \"" + supFile + "\"" + " SubRip /fps:25",
+                //Arguments = "/convert \"" + supFile + "\"" + " SubRip /fps:25",
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 RedirectStandardError = true
             };
+
+            psi.Arguments = $"/convert \"{supFile}\" SubRip /fps:25 /tesseract:\"{tesseractPath}\"";
 
             Process ocr = new Process
             {
@@ -161,7 +166,9 @@ namespace Subtitles_Extractor_GUI
 
     public enum SubtitleStreamType
     {
-        subrip_mov_text,
-        hdmv_pgs_subtitle
+        SubRip,
+        MOV_TEXT,
+        HDMV_PGS_SUBTITLE,
+        ASS
     }
 }

@@ -49,6 +49,7 @@
             this.sendToContextMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.chkCloseWhenDone = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMediaFiles)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -139,7 +140,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStatus.Location = new System.Drawing.Point(0, 442);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(708, 28);
+            this.lblStatus.Size = new System.Drawing.Size(594, 28);
             this.lblStatus.TabIndex = 2;
             this.lblStatus.Text = "0 Files";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,12 +240,23 @@
             this.dlgOpenFile.Multiselect = true;
             this.dlgOpenFile.Title = "Select Media File";
             // 
+            // chkCloseWhenDone
+            // 
+            this.chkCloseWhenDone.AutoSize = true;
+            this.chkCloseWhenDone.Location = new System.Drawing.Point(600, 448);
+            this.chkCloseWhenDone.Name = "chkCloseWhenDone";
+            this.chkCloseWhenDone.Size = new System.Drawing.Size(108, 17);
+            this.chkCloseWhenDone.TabIndex = 4;
+            this.chkCloseWhenDone.Text = "Close when done";
+            this.chkCloseWhenDone.UseVisualStyleBackColor = true;
+            // 
             // CfrmMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 473);
+            this.Controls.Add(this.chkCloseWhenDone);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnExtract);
             this.Controls.Add(this.dgvMediaFiles);
@@ -288,6 +300,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sendToContextMenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createRemoveToolStripMenuItem;
+        private System.Windows.Forms.CheckBox chkCloseWhenDone;
     }
 }
 

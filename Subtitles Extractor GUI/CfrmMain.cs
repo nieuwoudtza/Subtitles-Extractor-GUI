@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,10 +24,9 @@ namespace Subtitles_Extractor_GUI
         public CfrmMain(string[] args)
         {
 #if DEBUG
-            //args = new string[]
-            //{
-            //    @"D:\Torrents\MediaPilot"
-            //};
+            args = new string[]
+            {
+            };
 #endif
 
             _args = args;
@@ -178,7 +178,7 @@ namespace Subtitles_Extractor_GUI
                             return;
                         }
 
-                        if (stream.SubtitleStreamType == SubtitleStreamType.hdmv_pgs_subtitle)
+                        if (stream.SubtitleStreamType == SubtitleStreamType.HDMV_PGS_SUBTITLE)
                         {
                             semaphore.Release(); // Release semaphore as this does not affect disk speed
                             textBoxCell.Value = "Performing OCR";
@@ -200,7 +200,7 @@ namespace Subtitles_Extractor_GUI
                             lblStatus.Text = "Extracted " + extractedCount + "/" + _mediaFiles.Count + " (" + (extractedCount / _mediaFiles.Count * 100).ToString("F2") + "%)";
                         });
 
-                        if (stream.SubtitleStreamType != SubtitleStreamType.hdmv_pgs_subtitle)
+                        if (stream.SubtitleStreamType != SubtitleStreamType.HDMV_PGS_SUBTITLE)
                         {
                             semaphore.Release(); // Release semaphore when OCR was not performed
                         }
@@ -218,6 +218,13 @@ namespace Subtitles_Extractor_GUI
             await Task.WhenAll(tasks); // Wait for all tasks to complete
 
             _running = false;
+
+            if (chkCloseWhenDone.Checked)
+            {
+                SystemSounds.Asterisk.Play();
+                Close();
+                return;
+            }
 
             lblStatus.Text = _mediaFiles.Count + " Files";
 

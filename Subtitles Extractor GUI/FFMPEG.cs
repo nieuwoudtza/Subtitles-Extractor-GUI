@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Subtitles_Extractor_GUI
 {
@@ -26,10 +27,17 @@ namespace Subtitles_Extractor_GUI
             for (int j = 0; j < output.Length; j++)
             {
                 string line = output[j].Trim();
-                if (line.Contains("): subtitle: subrip") || line.Contains("): subtitle: mov_text") || line.Contains("): subtitle: hdmv_pgs_subtitle"))
+                if (line.Contains(": subtitle: subrip")
+                    || line.Contains(": subtitle: mov_text")
+                    || line.Contains(": subtitle: ass")
+                    || line.Contains(": subtitle: hdmv_pgs_subtitle"))
                 {
                     line = line.Substring("stream #".Length);
-                    string stream = line.Substring(0, line.IndexOf("("));
+                    string stream = string.Join(":", line.Split(':').Take(2));
+                    if (stream.Contains("("))
+                    {
+                        stream = stream.Substring(0, stream.IndexOf("("));
+                    }
                     string language = line.Substring(line.IndexOf("(") + 1);
                     language = language.Substring(0, language.IndexOf(")"));
 
@@ -40,13 +48,21 @@ namespace Subtitles_Extractor_GUI
                         Language = language,
                     };
 
-                    if (line.Contains("): subtitle: subrip") || line.Contains("): subtitle: mov_text"))
+                    if (line.Contains(": subtitle: subrip"))
                     {
-                        subtitleStream.SubtitleStreamType = SubtitleStreamType.subrip_mov_text;
+                        subtitleStream.SubtitleStreamType = SubtitleStreamType.SubRip;
                     }
-                    else
+                    else if (line.Contains(": subtitle: mov_text"))
                     {
-                        subtitleStream.SubtitleStreamType = SubtitleStreamType.hdmv_pgs_subtitle;
+                        subtitleStream.SubtitleStreamType = SubtitleStreamType.MOV_TEXT;
+                    }
+                    else if (line.Contains(": subtitle: ass"))
+                    {
+                        subtitleStream.SubtitleStreamType = SubtitleStreamType.ASS;
+                    }
+                    else 
+                    {
+                        subtitleStream.SubtitleStreamType = SubtitleStreamType.HDMV_PGS_SUBTITLE;
                     }
 
                     subtitleStreams.Add(subtitleStream);
