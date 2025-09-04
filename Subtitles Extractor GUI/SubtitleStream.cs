@@ -112,17 +112,14 @@ namespace Subtitles_Extractor_GUI
         {
             string supFile = Path.ChangeExtension(Input, ".sup");
             string subEditPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE", "SubtitleEdit.exe");
-            string tesseractPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SE", "Tesseract533", "tesseract.exe");
 
             ProcessStartInfo psi = new ProcessStartInfo(subEditPath)
             {
-                //Arguments = "/convert \"" + supFile + "\"" + " SubRip /fps:25",
+                Arguments = $"/convert \"{supFile}\" SubRip /fps:25 /fixcommonerrors",
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 RedirectStandardError = true
             };
-
-            psi.Arguments = $"/convert \"{supFile}\" SubRip /fps:25 /tesseract:\"{tesseractPath}\"";
 
             Process ocr = new Process
             {

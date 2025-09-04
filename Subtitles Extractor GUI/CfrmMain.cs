@@ -26,6 +26,7 @@ namespace Subtitles_Extractor_GUI
 #if DEBUG
             args = new string[]
             {
+                @"F:\Torrents\MediaPilot Temp\Blacklist S04\The Blacklist (2013) - S04E01 - Esteban (1080p BluRay x265 RZeroX).mkv"
             };
 #endif
 
